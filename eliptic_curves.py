@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from dataclasses import dataclass
-from xmlrpc.client import Boolean
 
 @dataclass(frozen=True, eq=True)
 class Point:
