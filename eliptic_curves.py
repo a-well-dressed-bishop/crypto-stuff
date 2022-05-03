@@ -130,7 +130,7 @@ class EllipticCurve:
 
     def crypto_check(self) -> bool:
         """Proofs, whether the parameters satisfy the property 4*a^3 + 27*b^2 != 0 mod p"""
-        to_check = (4 * self.__a ^ 3 + 27 * self.__b ^ 2) % self.__p
+        to_check = (4 * self.__a ** 3 + 27 * self.__b ** 2) % self.__p
 
         return (to_check, to_check != 0)
     
