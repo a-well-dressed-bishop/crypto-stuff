@@ -211,6 +211,8 @@ class EllipticCurve:
 
 if __name__ == "__main__":
     
+    pass
+    
     """ Aufgabe 3, Teil (b) """
 
     """
