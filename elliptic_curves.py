@@ -140,19 +140,16 @@ class EllipticCurve:
         if not self.valid(P):
             raise Exception(f"Point {P} is not on the EC {repr(self)}")
 
-        if scalar & 1:
-            T = P
-        else:
-            T = EllipticCurve.O
+        T = EllipticCurve.O
 
-        while scalar > 1:
+        while scalar:
             scalar >>= 1
             T = self.double(T)
-            print(f'Double: {scalar} -> {T}')
+            # print(f'Double: {scalar} -> {T}')
             
             if (scalar & 1):
                 T = self.add(T, P)
-                print(f'Add: {scalar} -> {T}')
+                # print(f'Add: {scalar} -> {T}')
 
         return T
     
