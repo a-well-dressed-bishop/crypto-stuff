@@ -137,21 +137,22 @@ class EllipticCurve:
     def mod_add(self, P: Point, scalar: int) -> Point:
         """Square&Multiply, only it's Double&Add"""
         
+        if not scalar:
+            return self.O
+
         if not self.valid(P):
             raise Exception(f"Point {P} is not on the EC {repr(self)}")
 
-        T = EllipticCurve.O
+        Q = self.O
+        R = P
 
         while scalar:
-            scalar >>= 1
-            T = self.double(T)
-            # print(f'Double: {scalar} -> {T}')
-            
             if (scalar & 1):
-                T = self.add(T, P)
-                # print(f'Add: {scalar} -> {T}')
+                Q = self.add(Q, R)
+            R = self.double(R)
+            scalar >>= 1
 
-        return T
+        return Q
     
     def mod_pow(self, base, exp, mod=None) -> int:
         """Modular Exponentiation"""
